@@ -38,4 +38,14 @@ public class PostController {
     public ResponseEntity<List<Post>> findAllPost(){
         return new ResponseEntity<>(postService.getAllPosts() , HttpStatus.OK);
     }
+
+    @PutMapping("/posts/{postId}/user/{userId}")
+    public ResponseEntity<Post> savedPostHandler(@PathVariable("postId") long postId , @PathVariable("userId") long userId) throws Exception {
+        return new ResponseEntity<>(postService.savedPost(userId , postId) , HttpStatus.ACCEPTED);
+    }
+
+    @PutMapping("/posts/{postId}/user/{userId}")
+    public ResponseEntity<Post> likePostHandler(@PathVariable("postId") long postId , @PathVariable("userId") long userId) throws Exception {
+        return new ResponseEntity<>(postService.likePost(userId , postId) , HttpStatus.ACCEPTED);
+    }
 }
